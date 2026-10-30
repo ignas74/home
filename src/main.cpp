@@ -1,10 +1,11 @@
 #include <Arduino.h>
+
 #include "DisplayManager.h"
 #include "ButtonManager.h"
 
-DisplayManager displayManager(18, 19);
-// ButtonManager buttonManager(27, 25, 26);
-ButtonManager buttonManager(27, 26);
+
+DisplayManager displayManager;
+ButtonManager buttonManager;
 
 void setup()
 {

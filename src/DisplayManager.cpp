@@ -1,9 +1,13 @@
 #include "DisplayManager.h"
 
-DisplayManager::DisplayManager(int sda_pin, int scl_pin) : display(128, 64, &Wire, -1)
+DisplayManager::DisplayManager()
+    : SDA_PIN(Config::PIN_OLED_SDA),
+      SCL_PIN(Config::PIN_OLED_SCL),
+      SCREEN_WIDTH(Config::OLED_SCREEN_WIDTH),
+      SCREEN_HEIGHT(Config::OLED_SCREEN_HEIGHT),
+      OLED_RESET(Config::OLED_RESET),
+      display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET) // Pass
 {
-    SDA_PIN = sda_pin;
-    SCL_PIN = scl_pin;
 }
 
 void DisplayManager::initDisplay()
@@ -98,8 +102,6 @@ DisplayManager::~DisplayManager()
 
 //     display.display();
 // }
-
-
 
 // void DisplayManager::set_SDA_PIN(int a)
 // {

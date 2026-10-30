@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Arduino.h>
+#include <Config.h>
 
 class ButtonManager
 {
@@ -24,7 +25,8 @@ private:
     void updateButton(Button &button);
 
 public:
-    ButtonManager(int left_pin, int right_pin);
+    // ButtonManager(int left_pin, int right_pin);
+    ButtonManager();
 
     void initButtons();
     void update();
