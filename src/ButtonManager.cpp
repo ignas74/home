@@ -7,12 +7,6 @@ pressedEvent	    is there a new registered event
 lastDebounceTime	when was the last electrical state change
 */
 
-// ButtonManager::ButtonManager(int left_pin, int right_pin)
-// {
-//     leftButton.pin = left_pin;
-//     rightButton.pin = right_pin;
-// }
-
 ButtonManager::ButtonManager()
 {
     leftButton.pin = Config::LEFT_BUTTON_PIN;   // Priskiriame reikšmę tiesiogiai į struktūros vidų
