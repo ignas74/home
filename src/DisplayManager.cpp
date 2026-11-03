@@ -8,6 +8,7 @@ DisplayManager::DisplayManager(TemperatureSensor &tempSensor)
       OLED_RESET(Config::OLED_RESET),
       temperatureSensor(tempSensor),
       display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET) // Pass
+    //   currentWindowIndex(0)
 {
 }
 
@@ -22,6 +23,7 @@ void DisplayManager::initDisplay()
             ;
     }
 }
+
 
 void DisplayManager::firstWindow()
 {
