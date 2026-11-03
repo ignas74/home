@@ -13,14 +13,12 @@ MenuManager menuManager(displayManager, buttonManager);
 void setup()
 {
   Serial.begin(115200);
-  
+
   displayManager.initDisplay();
   displayManager.firstWindow();
   buttonManager.initButtons();
-  temperatureSensor.begin(); 
-
+  temperatureSensor.begin();
 }
-
 
 void loop()
 {
@@ -34,7 +32,7 @@ void loop()
   // if new temperature data is available, update the display and print to Serial
   if (temperatureSensor.hasNewData())
   {
-      displayManager.firstWindow(); // update the display with the latest temperature reading
-      // temperatureSensor.printTemperatureAndHumidity(); 
+    displayManager.firstWindow(); // update the display with the latest temperature reading
+                                  // temperaturSeSensor.printTemperatureAndHumidity();
   }
 }

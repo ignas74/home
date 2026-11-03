@@ -30,12 +30,12 @@ void TemperatureSensor::update()
         float temp = dht.readTemperature();
         float hum = dht.readHumidity();
 
-        if (!isnan(temp)) 
+        if (!isnan(temp))
         {
             currentTemperature = temp;
             newDataAvailable = true; // set flag
         }
-        if (!isnan(hum)) 
+        if (!isnan(hum))
         {
             currentHumidity = hum;
         }

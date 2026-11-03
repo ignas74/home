@@ -1,8 +1,8 @@
 #include "MenuManager.h"
 
-MenuManager::MenuManager(DisplayManager& displayInstance, ButtonManager& buttonInstance)
+MenuManager::MenuManager(DisplayManager &displayInstance, ButtonManager &buttonInstance)
     : display(displayInstance),
-      buttonManager(buttonInstance), 
+      buttonManager(buttonInstance),
       currentIndex(Config::MENU_CURRENT_INDEX),
       previousIndex(Config::MENU_PREVIOUS_INDEX)
 {
