@@ -4,11 +4,13 @@
 #include "ButtonManager.h"
 #include "MenuManager.h"
 #include "TemperatureSensor.h"
+#include "UltrasonicSensor.h"
 
 ButtonManager buttonManager;
 TemperatureSensor temperatureSensor;
 DisplayManager displayManager(temperatureSensor);
 MenuManager menuManager(displayManager, buttonManager);
+UltrasonicSensor ultrasonicSensor;
 
 void setup()
 {
@@ -18,6 +20,7 @@ void setup()
   displayManager.firstWindow();
   buttonManager.initButtons();
   temperatureSensor.begin();
+  ultrasonicSensor.begin();
 }
 
 void loop()
