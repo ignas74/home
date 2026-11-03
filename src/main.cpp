@@ -3,9 +3,11 @@
 #include "DisplayManager.h"
 #include "ButtonManager.h"
 #include "MenuManager.h"
+#include "TemperatureSensor.h"
 
-DisplayManager displayManager;
 ButtonManager buttonManager;
+TemperatureSensor temperatureSensor;
+DisplayManager displayManager(temperatureSensor);
 MenuManager menuManager(displayManager, buttonManager);
 
 void setup()
@@ -14,15 +16,25 @@ void setup()
   
   displayManager.initDisplay();
   displayManager.firstWindow();
-  
   buttonManager.initButtons();
+  temperatureSensor.begin(); 
+
 }
+
 
 void loop()
 {
-  // update buttons state
+  // update button states and handle menu navigation
   buttonManager.update();
-
-  // check for button presses and slide the menu accordingly
   menuManager.slide();
+
+  // update temperature sensor readings
+  temperatureSensor.update();
+
+  // if new temperature data is available, update the display and print to Serial
+  if (temperatureSensor.hasNewData())
+  {
+      displayManager.firstWindow(); // update the display with the latest temperature reading
+      // temperatureSensor.printTemperatureAndHumidity(); 
+  }
 }

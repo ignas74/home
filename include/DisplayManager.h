@@ -1,5 +1,6 @@
 #pragma once
 
+#include "TemperatureSensor.h"
 #include <Wire.h>
 #include <Config.h>
 #include <Adafruit_GFX.h>
@@ -15,9 +16,10 @@ private:
     int SCREEN_HEIGHT;
     int OLED_RESET;
     Adafruit_SH1106G display;
+    TemperatureSensor& temperatureSensor; // reference to the TemperatureSensor instance
 
 public:
-    DisplayManager(); // No need parameters as we are going to use Config.h
+    DisplayManager(TemperatureSensor& tempSensor); // constructor with reference to TemperatureSensor
     ~DisplayManager();
 
     void initDisplay();

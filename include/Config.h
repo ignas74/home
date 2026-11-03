@@ -5,6 +5,9 @@ namespace Config
     constexpr int PIN_OLED_SDA = 18;
     constexpr int PIN_OLED_SCL = 19;
 
+    constexpr int DHT_PIN = 4;
+    constexpr int DHT_TYPE = 11;
+
     constexpr int LEFT_BUTTON_PIN = 27;
     constexpr int RIGHT_BUTTON_PIN = 26;
 
