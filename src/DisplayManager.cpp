@@ -38,7 +38,9 @@ void DisplayManager::secondWindow()
     display.setTextSize(3);
     display.setTextColor(SH110X_WHITE);
     display.setCursor(0, 0);
+
     display.println("2");
+    
     display.display();
 }
 
