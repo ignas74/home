@@ -12,6 +12,11 @@ MenuManager::~MenuManager()
 {
 }
 
+int MenuManager::getCurrentIndex() const
+{
+  return currentIndex;
+}
+
 void MenuManager::slide()
 {
   // buttons state from ButtonManager
@@ -67,6 +72,8 @@ void MenuManager::slide()
       previousIndex = 3;
     }
   }
+
+
 
   // if (isLeftPressed || isRightPressed)
   // {

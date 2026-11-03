@@ -29,10 +29,11 @@ void loop()
   // update temperature sensor readings
   temperatureSensor.update();
 
-  // if new temperature data is available, update the display and print to Serial
   if (temperatureSensor.hasNewData())
   {
-    displayManager.firstWindow(); // update the display with the latest temperature reading
-                                  // temperaturSeSensor.printTemperatureAndHumidity();
+    if (menuManager.getCurrentIndex() == 1) // check if the current menu index is 1
+    {
+      displayManager.firstWindow(); // update the display with the latest temperature reading
+    }
   }
 }

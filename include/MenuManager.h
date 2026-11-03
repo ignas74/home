@@ -16,5 +16,6 @@ public:
     MenuManager(DisplayManager& displayInstance, ButtonManager& buttonInstance);
     ~MenuManager();
 
+    int getCurrentIndex() const;
     void slide();
 };

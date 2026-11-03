@@ -17,14 +17,6 @@ private:
     Adafruit_SH1106G display;
     TemperatureSensor &temperatureSensor; // reference to the TemperatureSensor instance
 
-    /*
-    
-
-    REIKES I MENUMANAGER
-    // int currentWindowIndex = 0; // track the current window index
-    
-    */
-
 public:
     DisplayManager(TemperatureSensor &tempSensor); // constructor with reference to TemperatureSensor
     ~DisplayManager();
@@ -33,4 +25,8 @@ public:
     void firstWindow();
     void secondWindow();
     void thirdWindow();
+
+    // int getCurrentWindowIndex() const;
+    // int setCurrentWindowIndex(int index);
 };
+
