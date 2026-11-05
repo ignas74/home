@@ -6,12 +6,19 @@
 class UltrasonicSensor
 {
 private:
-    int TRIG_PIN;
-    int ECHO_PIN;
+    int trigPin;
+    int echoPin;
+    unsigned long lastMillis;
+    const unsigned long interval = 200; // atnaujinimo intervalas (ms)
+    bool newDataAvailable;
+    long currentDistance;
+
 public:
     UltrasonicSensor();
     ~UltrasonicSensor();
+
     void begin();
-    // long getDistance();
-    long measureDistance();
+    void update();
+    bool hasNewData() const;
+    long getDistance() const;
 };

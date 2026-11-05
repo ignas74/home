@@ -5,12 +5,14 @@
 #include "MenuManager.h"
 #include "TemperatureSensor.h"
 #include "UltrasonicSensor.h"
+#include "PIRSensor.h"
 
 ButtonManager buttonManager;
 TemperatureSensor temperatureSensor;
-DisplayManager displayManager(temperatureSensor);
-MenuManager menuManager(displayManager, buttonManager);
 UltrasonicSensor ultrasonicSensor;
+PIRSensor pirSensor;
+DisplayManager displayManager(temperatureSensor, ultrasonicSensor);
+MenuManager menuManager(displayManager, buttonManager);
 
 void setup()
 {
@@ -21,6 +23,7 @@ void setup()
   buttonManager.initButtons();
   temperatureSensor.begin();
   ultrasonicSensor.begin();
+  pirSensor.begin();
 }
 
 void loop()
@@ -28,6 +31,8 @@ void loop()
   // update button states and handle menu navigation
   buttonManager.update();
   menuManager.slide();
+
+  pirSensor.readSensor();
 
   // update temperature sensor readings
   temperatureSensor.update();
@@ -39,4 +44,16 @@ void loop()
       displayManager.firstWindow(); // update the display with the latest temperature reading
     }
   }
+
+  ultrasonicSensor.update();
+
+  if (ultrasonicSensor.hasNewData())
+  {
+    if (menuManager.getCurrentIndex() == 2) // check if the current menu index is 1
+    {
+      displayManager.secondWindow(); // update the display with the latest temperature reading
+    }
+  }
+
+  // Serial.println(ultrasonicSensor.measureDistance());
 }

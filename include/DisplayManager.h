@@ -1,24 +1,27 @@
 #pragma once
 
-#include "TemperatureSensor.h"
-// #include <Wire.h>
-#include <Config.h>
-// #include <Adafruit_GFX.h>
 #include <Adafruit_SH110X.h>
+// #include <Wire.h>
+// #include <Adafruit_GFX.h>
+
+#include <Config.h>
+#include "TemperatureSensor.h"
+#include "UltrasonicSensor.h"
 
 class DisplayManager
 {
 private:
-    int SDA_PIN;
-    int SCL_PIN;
-    int SCREEN_WIDTH;
-    int SCREEN_HEIGHT;
-    int OLED_RESET;
-    Adafruit_SH1106G display;
+    int sdaPin;
+    int sclPin;
+    int screenWidth;
+    int screenHeight;
+    int oledReset;
     TemperatureSensor &temperatureSensor; // reference to the TemperatureSensor instance
+    UltrasonicSensor &ultrasonicSensor;
+    Adafruit_SH1106G display;
 
 public:
-    DisplayManager(TemperatureSensor &tempSensor); // constructor with reference to TemperatureSensor
+    DisplayManager(TemperatureSensor &tempSensor, UltrasonicSensor &ultraSensor); // constructor with reference to TemperatureSensor
     ~DisplayManager();
 
     void initDisplay();
@@ -29,4 +32,3 @@ public:
     // int getCurrentWindowIndex() const;
     // int setCurrentWindowIndex(int index);
 };
-

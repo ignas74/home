@@ -1,20 +1,21 @@
 #include "DisplayManager.h"
 
-DisplayManager::DisplayManager(TemperatureSensor &tempSensor)
-    : SDA_PIN(Config::PIN_OLED_SDA),
-      SCL_PIN(Config::PIN_OLED_SCL),
-      SCREEN_WIDTH(Config::OLED_SCREEN_WIDTH),
-      SCREEN_HEIGHT(Config::OLED_SCREEN_HEIGHT),
-      OLED_RESET(Config::OLED_RESET),
+DisplayManager::DisplayManager(TemperatureSensor &tempSensor, UltrasonicSensor &ultraSensor)
+    : sdaPin(Config::PIN_OLED_SDA),
+      sclPin(Config::PIN_OLED_SCL),
+      screenWidth(Config::OLED_SCREEN_WIDTH),
+      screenHeight(Config::OLED_SCREEN_HEIGHT),
+      oledReset(Config::OLED_RESET),
       temperatureSensor(tempSensor),
-      display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET) // Pass
+      ultrasonicSensor(ultraSensor),
+      display(screenWidth, screenHeight, &Wire, oledReset) // Pass
     //   currentWindowIndex(0)
 {
 }
 
 void DisplayManager::initDisplay()
 {
-    Wire.begin(SDA_PIN, SCL_PIN);
+    Wire.begin(sdaPin, sclPin);
 
     if (!display.begin(0x3C, true))
     {
@@ -56,7 +57,7 @@ void DisplayManager::secondWindow()
     display.setTextColor(SH110X_WHITE);
     display.setCursor(0, 0);
 
-    display.println("2");
+    display.println(ultrasonicSensor.getDistance());
 
     display.display();
 }

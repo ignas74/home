@@ -23,11 +23,11 @@ public:
 
   bool hasNewData();
 
-  float readTemperature();
-  float readHumidity();
-
   float getTemperature() const;
   float getHumidity() const;
 
-  void printTemperatureAndHumidity();
+  float readTemperature();
+  float readHumidity();
+
+  // void printTemperatureAndHumidity();
 };

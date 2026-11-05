@@ -1,8 +1,8 @@
 #pragma once
 
+#include "Config.h"
 #include "ButtonManager.h"
 #include "DisplayManager.h"
-#include "Config.h"
 
 class MenuManager
 {

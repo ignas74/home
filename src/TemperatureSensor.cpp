@@ -47,16 +47,6 @@ bool TemperatureSensor::hasNewData()
     return newDataAvailable;
 }
 
-float TemperatureSensor::readTemperature()
-{
-    return dht.readTemperature();
-}
-
-float TemperatureSensor::readHumidity()
-{
-    return dht.readHumidity();
-}
-
 float TemperatureSensor::getTemperature() const
 {
     return currentTemperature;
@@ -67,20 +57,30 @@ float TemperatureSensor::getHumidity() const
     return currentHumidity;
 }
 
-void TemperatureSensor::printTemperatureAndHumidity()
+float TemperatureSensor::readTemperature()
 {
-    float temperature = readTemperature();
-    float humidity = readHumidity();
-
-    if (isnan(temperature) || isnan(humidity))
-    {
-        Serial.println("DHT11 failed to launch");
-        return;
-    }
-
-    Serial.print("Temperature: ");
-    Serial.print(temperature);
-    Serial.print(" C   |   Humidity: ");
-    Serial.print(humidity);
-    Serial.println(" %");
+    return dht.readTemperature();
 }
+
+float TemperatureSensor::readHumidity()
+{
+    return dht.readHumidity();
+}
+
+// void TemperatureSensor::printTemperatureAndHumidity()
+// {
+//     float temperature = readTemperature();
+//     float humidity = readHumidity();
+
+//     if (isnan(temperature) || isnan(humidity))
+//     {
+//         Serial.println("DHT11 failed to launch");
+//         return;
+//     }
+
+//     Serial.print("Temperature: ");
+//     Serial.print(temperature);
+//     Serial.print(" C   |   Humidity: ");
+//     Serial.print(humidity);
+//     Serial.println(" %");
+// }

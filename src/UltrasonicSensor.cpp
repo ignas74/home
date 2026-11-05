@@ -1,8 +1,11 @@
 #include "UltrasonicSensor.h"
 
 UltrasonicSensor::UltrasonicSensor()
-    : TRIG_PIN(Config::TRIG_PIN),
-      ECHO_PIN(Config::ECHO_PIN)
+    : trigPin(Config::TRIG_PIN),
+      echoPin(Config::ECHO_PIN),
+      lastMillis(0),
+      newDataAvailable(false),
+      currentDistance(0)
 {
 }
 
@@ -12,22 +15,38 @@ UltrasonicSensor::~UltrasonicSensor()
 
 void UltrasonicSensor::begin()
 {
-    pinMode(TRIG_PIN, OUTPUT);
-    pinMode(ECHO_PIN, INPUT);
+    pinMode(trigPin, OUTPUT);
+    pinMode(echoPin, INPUT);
 }
 
-long UltrasonicSensor::measureDistance()
+void UltrasonicSensor::update()
 {
-    // send a 10 microsecond pulse to the trigger pin
-    digitalWrite(TRIG_PIN, LOW);
-    delayMicroseconds(2);
-    digitalWrite(TRIG_PIN, HIGH);
-    delayMicroseconds(10);
-    digitalWrite(TRIG_PIN, LOW);
+    newDataAvailable = false;
+    unsigned long currentMillis = millis();
 
-    // read the echo pin and calculate the distance
-    long duration = pulseIn(ECHO_PIN, HIGH);
-    long distance = duration * 0.034 / 2; // convert to centimeters
+    if (currentMillis - lastMillis >= interval)
+    {
+        lastMillis = currentMillis;
 
-    return distance;
+        digitalWrite(trigPin, LOW);
+        delayMicroseconds(2);
+        digitalWrite(trigPin, HIGH);
+        delayMicroseconds(10);
+        digitalWrite(trigPin, LOW);
+
+        long duration = pulseIn(echoPin, HIGH);
+        currentDistance = duration * 0.034 / 2;
+
+        newDataAvailable = true;
+    }
+}
+
+bool UltrasonicSensor::hasNewData() const
+{
+    return newDataAvailable;
+}
+
+long UltrasonicSensor::getDistance() const
+{
+    return currentDistance;
 }
