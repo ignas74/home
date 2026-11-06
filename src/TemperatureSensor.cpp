@@ -9,10 +9,6 @@ TemperatureSensor::TemperatureSensor()
 {
 }
 
-TemperatureSensor::~TemperatureSensor()
-{
-}
-
 void TemperatureSensor::begin()
 {
     dht.begin();
@@ -30,14 +26,12 @@ void TemperatureSensor::update()
         float temp = dht.readTemperature();
         float hum = dht.readHumidity();
 
-        if (!isnan(temp))
+        if (!isnan(temp) && !isnan(hum))
         {
             currentTemperature = temp;
-            newDataAvailable = true; // set flag
-        }
-        if (!isnan(hum))
-        {
             currentHumidity = hum;
+            newDataAvailable = true; // set flag
+            
         }
     }
 }
@@ -57,15 +51,15 @@ float TemperatureSensor::getHumidity() const
     return currentHumidity;
 }
 
-float TemperatureSensor::readTemperature()
-{
-    return dht.readTemperature();
-}
+// float TemperatureSensor::readTemperature()
+// {
+//     return dht.readTemperature();
+// }
 
-float TemperatureSensor::readHumidity()
-{
-    return dht.readHumidity();
-}
+// float TemperatureSensor::readHumidity()
+// {
+//     return dht.readHumidity();
+// }
 
 // void TemperatureSensor::printTemperatureAndHumidity()
 // {

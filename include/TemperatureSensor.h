@@ -1,7 +1,7 @@
 #pragma once
 
-// #include <Arduino.h>
 #include <DHT.h>
+
 #include "Config.h"
 
 class TemperatureSensor
@@ -16,7 +16,6 @@ private:
 
 public:
   TemperatureSensor();
-  ~TemperatureSensor();
 
   void begin();
   void update();
@@ -26,8 +25,8 @@ public:
   float getTemperature() const;
   float getHumidity() const;
 
-  float readTemperature();
-  float readHumidity();
+  // float readTemperature();
+  // float readHumidity();
 
   // void printTemperatureAndHumidity();
 };

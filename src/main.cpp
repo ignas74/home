@@ -1,5 +1,11 @@
 #include <Arduino.h>
 
+/*
+- Reference – man būtinai reikia šio objekto.
+- Pointer – galiu turėti šį objektą, bet galiu jo ir neturėti, arba norėti keisti, į kurį objektą rodau.
+Dar viena detalė: pointeris nėra savaime blogesnis ar mažiau saugus. Jis tiesiog suteikia daugiau lankstumo, o kartu ir daugiau atsakomybės.
+*/
+
 #include "DisplayManager.h"
 #include "ButtonManager.h"
 #include "MenuManager.h"

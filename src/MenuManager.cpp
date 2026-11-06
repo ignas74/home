@@ -8,10 +8,6 @@ MenuManager::MenuManager(DisplayManager &displayInstance, ButtonManager &buttonI
 {
 }
 
-MenuManager::~MenuManager()
-{
-}
-
 int MenuManager::getCurrentIndex() const
 {
   return currentIndex;
@@ -35,6 +31,11 @@ void MenuManager::slide()
   //   Serial.println(currentIndex);
   // }
 
+  /*
+  tracks where we are in the menu
+  if we are at the last menu and press right -> show 1st window and vice versa
+  */
+
   if (isLeftPressed)
   {
     currentIndex--;
@@ -54,6 +55,8 @@ void MenuManager::slide()
     }
   }
 
+  // tracks changes and updates index
+
   if (previousIndex != currentIndex)
   {
     if (currentIndex == 1)
@@ -72,8 +75,6 @@ void MenuManager::slide()
       previousIndex = 3;
     }
   }
-
-
 
   // if (isLeftPressed || isRightPressed)
   // {

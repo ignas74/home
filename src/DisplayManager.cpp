@@ -9,7 +9,6 @@ DisplayManager::DisplayManager(TemperatureSensor &tempSensor, UltrasonicSensor &
       temperatureSensor(tempSensor),
       ultrasonicSensor(ultraSensor),
       display(screenWidth, screenHeight, &Wire, oledReset) // Pass
-    //   currentWindowIndex(0)
 {
 }
 
@@ -25,25 +24,30 @@ void DisplayManager::initDisplay()
     }
 }
 
-
 void DisplayManager::firstWindow()
 {
     display.clearDisplay();
 
+    // temperature
     display.setTextColor(SH110X_WHITE);
     display.setTextSize(1);
     display.setCursor(0, 0);
     display.println("Temperature:");
+
     display.setTextSize(2);
-    display.print(temperatureSensor.readTemperature());
+    display.print(temperatureSensor.getTemperature());
+
     display.setTextSize(1);
     display.println(" C");
 
+    // humidity 
     display.setTextSize(1);
     display.setCursor(0, 30);
     display.println("Humidity:");
+
     display.setTextSize(2);
-    display.print(temperatureSensor.readHumidity());
+    display.print(temperatureSensor.getHumidity());
+
     display.setTextSize(1);
     display.println(" %");
 
@@ -53,11 +57,17 @@ void DisplayManager::firstWindow()
 void DisplayManager::secondWindow()
 {
     display.clearDisplay();
-    display.setTextSize(3);
-    display.setTextColor(SH110X_WHITE);
-    display.setCursor(0, 0);
 
-    display.println(ultrasonicSensor.getDistance());
+    display.setTextColor(SH110X_WHITE);
+    display.setTextSize(1);
+    display.setCursor(0, 0);
+    display.println("Distance:");
+
+    display.setTextSize(2);
+    display.print(ultrasonicSensor.getDistance());
+
+    display.setTextSize(1);
+    display.println(" cm");
 
     display.display();
 }
@@ -70,8 +80,4 @@ void DisplayManager::thirdWindow()
     display.setCursor(0, 0);
     display.println("3");
     display.display();
-}
-
-DisplayManager::~DisplayManager()
-{
 }

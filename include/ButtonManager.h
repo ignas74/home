@@ -7,6 +7,9 @@
 class ButtonManager
 {
 private:
+    // struct because left and right buttons share the same variables.
+    // i could do leftPin, rightPin. but there's consider 4-5 buttons
+    
     struct Button
     {
         int pin;
@@ -26,7 +29,6 @@ private:
     void updateButton(Button &button);
 
 public:
-    // ButtonManager(int left_pin, int right_pin);
     ButtonManager();
 
     void initButtons();

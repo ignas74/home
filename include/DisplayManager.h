@@ -1,10 +1,8 @@
 #pragma once
 
 #include <Adafruit_SH110X.h>
-// #include <Wire.h>
-// #include <Adafruit_GFX.h>
 
-#include <Config.h>
+#include "Config.h"
 #include "TemperatureSensor.h"
 #include "UltrasonicSensor.h"
 
@@ -22,13 +20,9 @@ private:
 
 public:
     DisplayManager(TemperatureSensor &tempSensor, UltrasonicSensor &ultraSensor); // constructor with reference to TemperatureSensor
-    ~DisplayManager();
 
     void initDisplay();
     void firstWindow();
     void secondWindow();
     void thirdWindow();
-
-    // int getCurrentWindowIndex() const;
-    // int setCurrentWindowIndex(int index);
 };

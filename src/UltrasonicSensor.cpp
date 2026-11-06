@@ -9,10 +9,6 @@ UltrasonicSensor::UltrasonicSensor()
 {
 }
 
-UltrasonicSensor::~UltrasonicSensor()
-{
-}
-
 void UltrasonicSensor::begin()
 {
     pinMode(trigPin, OUTPUT);
