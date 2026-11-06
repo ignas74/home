@@ -38,7 +38,7 @@ void loop()
   buttonManager.update();
   menuManager.slide();
 
-  
+
   // update temperature sensor readings
   temperatureSensor.update();
 
@@ -49,6 +49,8 @@ void loop()
       displayManager.firstWindow(); // update the display with the latest temperature reading
     }
   }
+
+  
 
 
   ultrasonicSensor.update();
@@ -66,11 +68,19 @@ void loop()
 
   pirSensor.update();
 
-  if (pirSensor.hasNewData())
+  if (menuManager.getCurrentIndex() == 3)
   {
-    if (menuManager.getCurrentIndex() == 3)
-    {
       displayManager.thirdWindow();
-    }
   }
+
+
+  // pirSensor.update();
+
+  // if (pirSensor.hasNewData())
+  // {
+  //   if (menuManager.getCurrentIndex() == 3)
+  //   {
+  //     displayManager.thirdWindow();
+  //   }
+  // }
 }

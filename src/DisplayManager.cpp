@@ -9,7 +9,8 @@ DisplayManager::DisplayManager(TemperatureSensor &tempSensor, UltrasonicSensor &
       temperatureSensor(tempSensor),
       ultrasonicSensor(ultraSensor),
       pirSensor(pirSensor),
-      display(screenWidth, screenHeight, &Wire, oledReset) // Pass
+      display(screenWidth, screenHeight, &Wire, oledReset), // Pass
+      faceAnimation(display)
 {
 }
 
@@ -84,12 +85,14 @@ void DisplayManager::thirdWindow()
     if (pirSensor.getPirState()) 
     {
         display.print("Motion detected");
+        display.display();
     }
     else 
     {
-        display.print("No motion");
+        // display.print("No motion");
+        faceAnimation.update();
     }
 
 
-    display.display();
+    // display.display();
 }

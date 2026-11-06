@@ -21,10 +21,11 @@ namespace Config
     constexpr int LEFT_BUTTON_PIN = 27;
     constexpr int RIGHT_BUTTON_PIN = 26;
 
-    // OLED screen resolution
+    // OLED screen
     constexpr int OLED_SCREEN_WIDTH = 128;
     constexpr int OLED_SCREEN_HEIGHT = 64;
     constexpr int OLED_RESET = -1;
+    constexpr int SCREEN_ADDR = 0x3C;
 
     // menu starter indexes
     constexpr int MENU_CURRENT_INDEX = 1;
