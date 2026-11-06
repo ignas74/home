@@ -5,6 +5,7 @@
 #include "Config.h"
 #include "TemperatureSensor.h"
 #include "UltrasonicSensor.h"
+#include "PIRSensor.h"
 
 class DisplayManager
 {
@@ -16,10 +17,11 @@ private:
     int oledReset;
     TemperatureSensor &temperatureSensor; // reference to the TemperatureSensor instance
     UltrasonicSensor &ultrasonicSensor;
+    PIRSensor &pirSensor;
     Adafruit_SH1106G display;
 
 public:
-    DisplayManager(TemperatureSensor &tempSensor, UltrasonicSensor &ultraSensor); // constructor with reference to TemperatureSensor
+    DisplayManager(TemperatureSensor &tempSensor, UltrasonicSensor &ultraSensor, PIRSensor &pirSensor); // constructor with reference to TemperatureSensor
 
     void initDisplay();
     void firstWindow();

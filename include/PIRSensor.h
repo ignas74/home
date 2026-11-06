@@ -8,15 +8,24 @@ class PIRSensor
 {
 private:
     int outputPin;
-    bool pirState = false;
+    // bool pirState = false;
+    bool pirState;
+    bool newDataAvailable;
 
 public:
-    PIRSensor(/* args */);
-    ~PIRSensor();
+    PIRSensor();
 
     void begin();
-    void readSensor();
+    void update();
+    bool getPirState();
+    bool hasNewData();
 };
+
+
+
+
+
+
 
 /*
 int ledPin = D7;                 // Argon's onboard LED

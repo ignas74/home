@@ -1,11 +1,9 @@
 #include "PIRSensor.h"
 
-PIRSensor::PIRSensor(/* args */)
-    : outputPin(Config::OUTPUT_PIN)
-{
-}
-
-PIRSensor::~PIRSensor()
+PIRSensor::PIRSensor()
+    : outputPin(Config::OUTPUT_PIN),
+      pirState(false),
+      newDataAvailable(false)
 {
 }
 
@@ -14,19 +12,17 @@ void PIRSensor::begin()
     pinMode(outputPin, INPUT);
 }
 
-// void PIRSensor::readSensor()
-// {
-//     Serial.println(digitalRead(outputPin));
-//     delay(500);
-// }
-
-void PIRSensor::readSensor()
+void PIRSensor::update()
 {
+    newDataAvailable = false;
+    
     bool motionDetected = digitalRead(outputPin);
 
     if (motionDetected != pirState)
     {
         pirState = motionDetected;
+        
+        newDataAvailable = true;
 
         if (pirState)
         {
@@ -38,3 +34,15 @@ void PIRSensor::readSensor()
         }
     }
 }
+
+bool PIRSensor::hasNewData()
+{
+    return newDataAvailable;
+}
+
+bool PIRSensor::getPirState()
+{
+    return pirState;
+}
+
+

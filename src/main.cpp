@@ -17,7 +17,7 @@ ButtonManager buttonManager;
 TemperatureSensor temperatureSensor;
 UltrasonicSensor ultrasonicSensor;
 PIRSensor pirSensor;
-DisplayManager displayManager(temperatureSensor, ultrasonicSensor);
+DisplayManager displayManager(temperatureSensor, ultrasonicSensor, pirSensor);
 MenuManager menuManager(displayManager, buttonManager);
 
 void setup()
@@ -38,8 +38,7 @@ void loop()
   buttonManager.update();
   menuManager.slide();
 
-  pirSensor.readSensor();
-
+  
   // update temperature sensor readings
   temperatureSensor.update();
 
@@ -50,6 +49,7 @@ void loop()
       displayManager.firstWindow(); // update the display with the latest temperature reading
     }
   }
+
 
   ultrasonicSensor.update();
 
@@ -62,4 +62,15 @@ void loop()
   }
 
   // Serial.println(ultrasonicSensor.measureDistance());
+
+
+  pirSensor.update();
+
+  if (pirSensor.hasNewData())
+  {
+    if (menuManager.getCurrentIndex() == 3)
+    {
+      displayManager.thirdWindow();
+    }
+  }
 }

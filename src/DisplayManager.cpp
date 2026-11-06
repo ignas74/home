@@ -1,6 +1,6 @@
 #include "DisplayManager.h"
 
-DisplayManager::DisplayManager(TemperatureSensor &tempSensor, UltrasonicSensor &ultraSensor)
+DisplayManager::DisplayManager(TemperatureSensor &tempSensor, UltrasonicSensor &ultraSensor, PIRSensor &pirSensor)
     : sdaPin(Config::PIN_OLED_SDA),
       sclPin(Config::PIN_OLED_SCL),
       screenWidth(Config::OLED_SCREEN_WIDTH),
@@ -8,6 +8,7 @@ DisplayManager::DisplayManager(TemperatureSensor &tempSensor, UltrasonicSensor &
       oledReset(Config::OLED_RESET),
       temperatureSensor(tempSensor),
       ultrasonicSensor(ultraSensor),
+      pirSensor(pirSensor),
       display(screenWidth, screenHeight, &Wire, oledReset) // Pass
 {
 }
@@ -75,9 +76,20 @@ void DisplayManager::secondWindow()
 void DisplayManager::thirdWindow()
 {
     display.clearDisplay();
-    display.setTextSize(3);
+
     display.setTextColor(SH110X_WHITE);
+    display.setTextSize(2);
     display.setCursor(0, 0);
-    display.println("3");
+
+    if (pirSensor.getPirState()) 
+    {
+        display.print("Motion detected");
+    }
+    else 
+    {
+        display.print("No motion");
+    }
+
+
     display.display();
 }
